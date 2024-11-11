@@ -13,8 +13,12 @@ public interface Cat {
 			case SOLUTION:
 				return new CatSolution(id, name);
 			case MOCK:
-			    // TODO: Return a mock object that emulates the behavior of a real object.
-				return null;
+			    Cat mockedCat = Mockito.mock(Cat.class);
+				when(mockedCat.getName()).thenReturn(name);
+        		when(mockedCat.getId()).thenReturn(id);
+        		when(mockedCat.getRented()).thenReturn(false);
+				when(mockedCat.toString()).thenReturn("ID " + id + ". " + name);// TODO: Return a mock object that emulates the behavior of a real object.
+				return mockedCat;
 			default:
 				assert(false);
 				return null;
